@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="library/jquery.js"></script>
+    <style>
+        .box {
+            width: 450px;
+            height: 450px;
+            position: relative;
+            left: 100px;
+            top: 50px;
+            border: 1px solid #ccc;
+            cursor: move;
+        }
+        
+        .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            background-color: yellow;
+            opacity: .5;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .big {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 480px;
+            overflow: hidden;
+            width: 600px;
+            height: 600px;
+        }
+        
+        .big img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 700px;
+            height: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="img/Microsoft.jpg" alt="">
+        <div class="mask"></div>
+        <div class="big"><img src="img/Microsoft.jpg" alt="" class="bimg"></div>
+    </div>
+    <script>
+        $(".box").hover(function(e) {
+            $(".mask").show()
+            $(".big").show()
+        }, function() {
+            $(".mask").hide()
+            $(".big").hide()
+        })
+        $(".box").mousemove(function(e) {
+            var x = e.pageX - $(this)[0].offsetLeft - $(".mask")[0].offsetWidth / 2
+            var y = e.pageY - $(this)[0].offsetTop - $(".mask")[0].offsetTop / 2
+            var maxmove = $(".box")[0].offsetWidth - $(".mask")[0].offsetWidth
+            if (x < 0) {
+                x = 0
+            } else if (x > maxmove) {
+                x = maxmove
+            }
+            if (y < 0) {
+                y = 0
+            } else if (y > maxmove) {
+                y = maxmove
+            }
+            $(".mask").css({
+                    left: x,
+                    top: y
+                })
+                //大图最大移动移动距离
+            var bigmove = $('.bimg')[0].offsetWidth - $(".big")[0].offsetWidth
+            console.log(bigmove);
+            var bigX = x * maxmove / bigmove
+            $('.bimg').css({
+                left: bigX,
+                // top: bigX
+            })
+        })
+    </script>
+</body>
+
+</html>

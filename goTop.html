@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="library/jquery.js"></script>
+    <link rel="stylesheet" href="library/normaliza.css">
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?ugqpc1');
+            src: url('fonts/icomoon.eot?ugqpc1#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?ugqpc1') format('truetype'), url('fonts/icomoon.woff?ugqpc1') format('woff'), url('fonts/icomoon.svg?ugqpc1#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+        
+        html,
+        body {
+            height: 1500px;
+        }
+        
+        .goTop {
+            position: absolute;
+            bottom: 100px;
+            right: 100px;
+        }
+        
+        .goTop {
+            font-family: 'icomoon';
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </aside>
+    <div class="goTop">
+        
+    </div>
+    <script>
+        $(() => {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $(".goTop").fadeIn()
+                } else {
+                    $(".goTop").fadeOut()
+                }
+
+            })
+            $(".goTop").click(function() {
+                $("html , body").animate({
+                    scrollTop: 0
+                }, 2000)
+            })
+            console.log($(window).scrollTop());
+        })
+    </script>
+</body>
+
+</html>
